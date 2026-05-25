@@ -85,21 +85,24 @@ function AriaApp() {
           <div className="flex items-center gap-3 px-6 h-[72px]">
             <div className="flex-1 max-w-2xl">
               <div className="relative">
+                <label htmlFor="aria-global-search" className="sr-only">جستجو در همه ماژول‌ها</label>
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <input
+                  id="aria-global-search"
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="جستجو در همه ماژول‌ها… (پیام، فرستنده، شناسه)"
+                  aria-label="جستجو در همه ماژول‌ها"
                   className="w-full h-11 rounded-xl bg-secondary/60 border border-border pr-10 pl-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition"
                 />
                 <kbd className="hidden md:block absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground bg-background border border-border rounded px-1.5 py-0.5">⌘K</kbd>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
-              <button onClick={toggleTheme} className="size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label="theme">
+              <button onClick={toggleTheme} className="size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label={dark ? "روشن کردن حالت روز" : "فعال کردن حالت شب"}>
                 {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </button>
-              <button className="relative size-10 grid place-items-center rounded-xl hover:bg-secondary transition">
+              <button className="relative size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label="اعلان‌ها">
                 <Bell className="size-4" />
                 <span className="absolute top-2 left-2 size-2 rounded-full bg-[var(--color-primary-glow)] ring-2 ring-background" />
               </button>
@@ -127,10 +130,10 @@ function AriaApp() {
                   <Sparkles className="size-3" /> صندوق دریافت هوشمند
                 </div>
                 <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-                  صبح بخیر، <span className="gradient-text">محمد</span> 👋
+                  صندوق دریافت <span className="gradient-text">هوشمند آریا</span>
                 </h1>
                 <p className="text-sm text-muted-foreground mt-1.5">
-                  امروز <strong className="text-foreground">۹ پیام</strong> نیازمند اقدام شما هستند. بیایید شروع کنیم.
+                  صبح بخیر محمد — امروز <strong className="text-foreground">۹ پیام</strong> نیازمند اقدام شما هستند.
                 </p>
               </div>
               <button className="inline-flex items-center gap-2 gradient-primary text-primary-foreground text-sm font-medium rounded-xl px-5 h-11 shadow-glow hover:opacity-95 transition">
@@ -181,10 +184,10 @@ function AriaApp() {
               </div>
               {/* Date range */}
               <div className="lg:col-span-3">
-                <div className="text-[11px] text-muted-foreground mb-2">بازه زمانی</div>
-                <div className="flex gap-2">
-                  <DateInput placeholder="از تاریخ" />
-                  <DateInput placeholder="تا تاریخ" />
+                <div className="text-[11px] text-muted-foreground mb-2" id="aria-date-range-label">بازه زمانی</div>
+                <div className="flex gap-2" role="group" aria-labelledby="aria-date-range-label">
+                  <DateInput placeholder="از تاریخ" aria-label="از تاریخ" />
+                  <DateInput placeholder="تا تاریخ" aria-label="تا تاریخ" />
                 </div>
               </div>
               {/* Status */}
@@ -193,6 +196,7 @@ function AriaApp() {
                 <Select
                   value={statusFilter}
                   onChange={(v) => setStatusFilter(v as any)}
+                  aria-label="فیلتر وضعیت پیام"
                   options={[
                     { value: "all", label: "همه" },
                     { value: "unread", label: "خوانده نشده" },
@@ -260,9 +264,9 @@ function AriaApp() {
                         <td className="px-5 py-4"><StatusBadge status={r.status} /></td>
                         <td className="px-5 py-4">
                           <div className="flex items-center justify-end gap-1 opacity-60 group-hover:opacity-100 transition">
-                            <IconBtn><Eye className="size-4" /></IconBtn>
-                            <IconBtn><CheckCircle2 className="size-4" /></IconBtn>
-                            <IconBtn><MoreHorizontal className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`مشاهده پیام ${r.id}`}><Eye className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`علامت‌گذاری به عنوان خوانده‌شده ${r.id}`}><CheckCircle2 className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`گزینه‌های بیشتر برای ${r.id}`}><MoreHorizontal className="size-4" /></IconBtn>
                           </div>
                         </td>
                       </tr>
@@ -304,8 +308,8 @@ function Chip({ children, active, onClick }: any) {
 function Th({ children, className }: any) {
   return <th className={cn("px-5 py-3 font-medium", className)}>{children}</th>;
 }
-function IconBtn({ children }: any) {
-  return <button className="size-8 grid place-items-center rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition">{children}</button>;
+function IconBtn({ children, "aria-label": ariaLabel }: { children: any; "aria-label"?: string }) {
+  return <button aria-label={ariaLabel} className="size-8 grid place-items-center rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition">{children}</button>;
 }
 function PageBtn({ children, active }: any) {
   return (
@@ -329,18 +333,18 @@ function StatusBadge({ status }: { status: Status }) {
     </span>
   );
 }
-function DateInput({ placeholder }: { placeholder: string }) {
+function DateInput({ placeholder, "aria-label": ariaLabel }: { placeholder: string; "aria-label"?: string }) {
   return (
     <div className="relative flex-1">
       <Calendar className="absolute right-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
-      <input placeholder={placeholder} className="w-full h-10 rounded-lg bg-secondary/60 border border-border pr-8 pl-3 text-xs outline-none focus:border-primary transition" />
+      <input type="text" placeholder={placeholder} aria-label={ariaLabel ?? placeholder} className="w-full h-10 rounded-lg bg-secondary/60 border border-border pr-8 pl-3 text-xs outline-none focus:border-primary transition" />
     </div>
   );
 }
-function Select({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
+function Select({ value, onChange, options, "aria-label": ariaLabel }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; "aria-label"?: string }) {
   return (
     <div className="relative">
-      <select value={value} onChange={(e) => onChange(e.target.value)} className="appearance-none w-full h-10 rounded-lg bg-secondary/60 border border-border pr-3 pl-8 text-xs outline-none focus:border-primary transition cursor-pointer">
+      <select aria-label={ariaLabel} value={value} onChange={(e) => onChange(e.target.value)} className="appearance-none w-full h-10 rounded-lg bg-secondary/60 border border-border pr-3 pl-8 text-xs outline-none focus:border-primary transition cursor-pointer">
         {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
       <ChevronDown className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground pointer-events-none" />

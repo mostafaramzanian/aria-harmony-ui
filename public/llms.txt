@@ -1,0 +1,9 @@
+# آریا سیستم — Aria ERP
+
+> سامانه جامع منابع سازمانی آریا — مکاتبات، منابع انسانی، طرح و برنامه، مالی، بازرگانی و کیفیت.
+
+Aria System is a comprehensive Persian-language ERP platform covering correspondence, HR, planning, finance, commerce, and quality modules.
+
+## Pages
+
+- [صندوق دریافت / Inbox](/): Smart inbox dashboard with cross-module messages, filters, and stats.
