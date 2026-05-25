@@ -308,8 +308,8 @@ function Chip({ children, active, onClick }: any) {
 function Th({ children, className }: any) {
   return <th className={cn("px-5 py-3 font-medium", className)}>{children}</th>;
 }
-function IconBtn({ children }: any) {
-  return <button className="size-8 grid place-items-center rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition">{children}</button>;
+function IconBtn({ children, "aria-label": ariaLabel }: { children: any; "aria-label"?: string }) {
+  return <button aria-label={ariaLabel} className="size-8 grid place-items-center rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition">{children}</button>;
 }
 function PageBtn({ children, active }: any) {
   return (
