@@ -85,21 +85,24 @@ function AriaApp() {
           <div className="flex items-center gap-3 px-6 h-[72px]">
             <div className="flex-1 max-w-2xl">
               <div className="relative">
+                <label htmlFor="aria-global-search" className="sr-only">جستجو در همه ماژول‌ها</label>
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <input
+                  id="aria-global-search"
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="جستجو در همه ماژول‌ها… (پیام، فرستنده، شناسه)"
+                  aria-label="جستجو در همه ماژول‌ها"
                   className="w-full h-11 rounded-xl bg-secondary/60 border border-border pr-10 pl-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition"
                 />
                 <kbd className="hidden md:block absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground bg-background border border-border rounded px-1.5 py-0.5">⌘K</kbd>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
-              <button onClick={toggleTheme} className="size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label="theme">
+              <button onClick={toggleTheme} className="size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label={dark ? "روشن کردن حالت روز" : "فعال کردن حالت شب"}>
                 {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </button>
-              <button className="relative size-10 grid place-items-center rounded-xl hover:bg-secondary transition">
+              <button className="relative size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label="اعلان‌ها">
                 <Bell className="size-4" />
                 <span className="absolute top-2 left-2 size-2 rounded-full bg-[var(--color-primary-glow)] ring-2 ring-background" />
               </button>
