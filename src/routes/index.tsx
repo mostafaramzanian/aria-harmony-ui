@@ -264,9 +264,9 @@ function AriaApp() {
                         <td className="px-5 py-4"><StatusBadge status={r.status} /></td>
                         <td className="px-5 py-4">
                           <div className="flex items-center justify-end gap-1 opacity-60 group-hover:opacity-100 transition">
-                            <IconBtn><Eye className="size-4" /></IconBtn>
-                            <IconBtn><CheckCircle2 className="size-4" /></IconBtn>
-                            <IconBtn><MoreHorizontal className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`مشاهده پیام ${r.id}`}><Eye className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`علامت‌گذاری به عنوان خوانده‌شده ${r.id}`}><CheckCircle2 className="size-4" /></IconBtn>
+                            <IconBtn aria-label={`گزینه‌های بیشتر برای ${r.id}`}><MoreHorizontal className="size-4" /></IconBtn>
                           </div>
                         </td>
                       </tr>
