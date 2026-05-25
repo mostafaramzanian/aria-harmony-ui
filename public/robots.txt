@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aria-grace.lovable.app/sitemap.xml
