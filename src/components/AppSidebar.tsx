@@ -102,7 +102,7 @@ export function AppSidebar({
           <button
             onClick={onToggle}
             className="rounded-lg p-1.5 text-white/60 hover:text-white hover:bg-white/5 transition"
-            aria-label="toggle sidebar"
+            aria-label={collapsed ? "باز کردن منوی کناری" : "بستن منوی کناری"}
           >
             {collapsed ? <PanelRightOpen className="size-4" /> : <PanelRightClose className="size-4" />}
           </button>
