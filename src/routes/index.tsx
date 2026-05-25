@@ -130,10 +130,10 @@ function AriaApp() {
                   <Sparkles className="size-3" /> صندوق دریافت هوشمند
                 </div>
                 <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-                  صبح بخیر، <span className="gradient-text">محمد</span> 👋
+                  صندوق دریافت <span className="gradient-text">هوشمند آریا</span>
                 </h1>
                 <p className="text-sm text-muted-foreground mt-1.5">
-                  امروز <strong className="text-foreground">۹ پیام</strong> نیازمند اقدام شما هستند. بیایید شروع کنیم.
+                  صبح بخیر محمد — امروز <strong className="text-foreground">۹ پیام</strong> نیازمند اقدام شما هستند.
                 </p>
               </div>
               <button className="inline-flex items-center gap-2 gradient-primary text-primary-foreground text-sm font-medium rounded-xl px-5 h-11 shadow-glow hover:opacity-95 transition">
