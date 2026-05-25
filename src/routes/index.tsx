@@ -333,18 +333,18 @@ function StatusBadge({ status }: { status: Status }) {
     </span>
   );
 }
-function DateInput({ placeholder }: { placeholder: string }) {
+function DateInput({ placeholder, "aria-label": ariaLabel }: { placeholder: string; "aria-label"?: string }) {
   return (
     <div className="relative flex-1">
       <Calendar className="absolute right-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
-      <input placeholder={placeholder} className="w-full h-10 rounded-lg bg-secondary/60 border border-border pr-8 pl-3 text-xs outline-none focus:border-primary transition" />
+      <input type="text" placeholder={placeholder} aria-label={ariaLabel ?? placeholder} className="w-full h-10 rounded-lg bg-secondary/60 border border-border pr-8 pl-3 text-xs outline-none focus:border-primary transition" />
     </div>
   );
 }
-function Select({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
+function Select({ value, onChange, options, "aria-label": ariaLabel }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; "aria-label"?: string }) {
   return (
     <div className="relative">
-      <select value={value} onChange={(e) => onChange(e.target.value)} className="appearance-none w-full h-10 rounded-lg bg-secondary/60 border border-border pr-3 pl-8 text-xs outline-none focus:border-primary transition cursor-pointer">
+      <select aria-label={ariaLabel} value={value} onChange={(e) => onChange(e.target.value)} className="appearance-none w-full h-10 rounded-lg bg-secondary/60 border border-border pr-3 pl-8 text-xs outline-none focus:border-primary transition cursor-pointer">
         {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
       <ChevronDown className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground pointer-events-none" />
