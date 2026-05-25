@@ -184,10 +184,10 @@ function AriaApp() {
               </div>
               {/* Date range */}
               <div className="lg:col-span-3">
-                <div className="text-[11px] text-muted-foreground mb-2">بازه زمانی</div>
-                <div className="flex gap-2">
-                  <DateInput placeholder="از تاریخ" />
-                  <DateInput placeholder="تا تاریخ" />
+                <div className="text-[11px] text-muted-foreground mb-2" id="aria-date-range-label">بازه زمانی</div>
+                <div className="flex gap-2" role="group" aria-labelledby="aria-date-range-label">
+                  <DateInput placeholder="از تاریخ" aria-label="از تاریخ" />
+                  <DateInput placeholder="تا تاریخ" aria-label="تا تاریخ" />
                 </div>
               </div>
               {/* Status */}
@@ -196,6 +196,7 @@ function AriaApp() {
                 <Select
                   value={statusFilter}
                   onChange={(v) => setStatusFilter(v as any)}
+                  aria-label="فیلتر وضعیت پیام"
                   options={[
                     { value: "all", label: "همه" },
                     { value: "unread", label: "خوانده نشده" },
