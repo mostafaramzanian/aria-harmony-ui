@@ -122,6 +122,8 @@ export function AppSidebar({
                     if (hasItems && !collapsed) setOpen((s) => ({ ...s, [g.key]: !s[g.key] }));
                     else onSelect(g.key);
                   }}
+                  aria-label={g.label}
+                  aria-expanded={hasItems ? isOpen : undefined}
                   className={cn(
                     "group relative w-full flex items-center gap-3 rounded-xl px-3 h-11 text-sm font-medium transition-all",
                     isActive
