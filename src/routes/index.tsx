@@ -7,6 +7,7 @@ import {
   ArrowUpDown, Sparkles, TrendingUp, Clock3, Inbox as InboxIcon,
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
+import { HomeDashboard } from "@/components/HomeDashboard";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({ component: AriaApp });
