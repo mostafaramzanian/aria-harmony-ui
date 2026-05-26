@@ -4,11 +4,12 @@ import {
   Search, Bell, Sun, Moon, Filter, Calendar, ChevronDown,
   MoreHorizontal, Eye, CheckCircle2, AlertCircle, Circle,
   Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
-  ArrowUpDown, Sparkles, TrendingUp, Clock3, Inbox as InboxIcon,
+  ArrowUpDown,
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { HomeDashboard } from "@/components/HomeDashboard";
 import { cn } from "@/lib/utils";
+
 
 export const Route = createFileRoute("/")({ component: AriaApp });
 
@@ -64,12 +65,6 @@ function AriaApp() {
     });
   }, [q, deptFilter, statusFilter]);
 
-  const stats = [
-    { label: "پیام‌های خوانده نشده", value: "۲۴", change: "+۸٪", icon: InboxIcon, tone: "text-[var(--color-primary-glow)]" },
-    { label: "نیازمند اقدام", value: "۰۹", change: "اولویت بالا", icon: AlertCircle, tone: "text-amber-400" },
-    { label: "ورودی امروز", value: "۱۲", change: "+۳ نسبت به دیروز", icon: TrendingUp, tone: "text-emerald-400" },
-    { label: "میانگین پاسخ", value: "۱.۸س", change: "بهینه", icon: Clock3, tone: "text-cyan-400" },
-  ];
 
   return (
     <div className="flex min-h-screen bg-background text-foreground" dir="rtl">
@@ -125,49 +120,20 @@ function AriaApp() {
         ) : (
         <div className="p-6 lg:p-8 space-y-6 max-w-[1600px] w-full mx-auto">
 
-          {/* Hero header */}
-          <div className="relative overflow-hidden rounded-2xl border border-border shadow-card">
-            <div className="absolute inset-0 hero-glow" />
-            <div className="absolute -top-20 -left-20 size-72 rounded-full gradient-primary opacity-20 blur-3xl" />
-            <div className="relative p-6 lg:p-8 flex flex-wrap items-end justify-between gap-6">
-              <div>
-                <div className="inline-flex items-center gap-2 text-xs font-medium text-[var(--color-primary-glow)] bg-primary/10 border border-primary/20 rounded-full px-3 py-1 mb-3">
-                  <Sparkles className="size-3" /> صندوق دریافت هوشمند
-                </div>
-                <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-                  صندوق دریافت <span className="gradient-text">هوشمند آریا</span>
-                </h1>
-                <p className="text-sm text-muted-foreground mt-1.5">
-                  صبح بخیر محمد — امروز <strong className="text-foreground">۹ پیام</strong> نیازمند اقدام شما هستند.
-                </p>
-              </div>
-              <button className="inline-flex items-center gap-2 gradient-primary text-primary-foreground text-sm font-medium rounded-xl px-5 h-11 shadow-glow hover:opacity-95 transition">
-                <Sparkles className="size-4" />
-                ایجاد نامه جدید
-              </button>
+          {/* Minimal inbox header */}
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h1 className="text-xl lg:text-2xl font-bold tracking-tight">صندوق دریافت</h1>
+              <p className="text-sm text-muted-foreground mt-1">پیام‌ها و اعلان‌های سازمانی شما</p>
             </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {stats.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.label} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-card hover:shadow-elevated transition">
-                  <div className="absolute -bottom-6 -left-6 size-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition" />
-                  <div className="relative flex items-start justify-between">
-                    <div>
-                      <div className="text-xs text-muted-foreground">{s.label}</div>
-                      <div className="mt-2 text-2xl font-bold tracking-tight">{s.value}</div>
-                      <div className={cn("mt-1 text-[11px]", s.tone)}>{s.change}</div>
-                    </div>
-                    <div className={cn("size-10 rounded-xl bg-secondary grid place-items-center", s.tone)}>
-                      <Icon className="size-5" />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium rounded-full border px-2.5 py-1 bg-blue-500/10 text-blue-300 border-blue-400/20">
+                <Circle className="size-2.5 fill-current" /> ۲۴ خوانده نشده
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium rounded-full border px-2.5 py-1 bg-amber-500/10 text-amber-300 border-amber-400/20">
+                <AlertCircle className="size-2.5" /> ۹ اقدام
+              </span>
+            </div>
           </div>
 
           {/* Filters */}
