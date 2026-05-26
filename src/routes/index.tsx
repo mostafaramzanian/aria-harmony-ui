@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { HomeDashboard } from "@/components/HomeDashboard";
+import { NewLetterPage } from "@/components/NewLetterPage";
 import { cn } from "@/lib/utils";
 
 
