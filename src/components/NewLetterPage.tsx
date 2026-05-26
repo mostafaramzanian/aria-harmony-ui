@@ -509,6 +509,14 @@ export function NewLetterPage() {
           </div>
         </div>
       </div>
+
+      {drawOpen && (
+        <SignaturePad
+          initial={signatureUrl}
+          onClose={() => setDrawOpen(false)}
+          onSave={(url) => { setSignatureUrl(url); setDrawOpen(false); }}
+        />
+      )}
     </div>
   );
 }
