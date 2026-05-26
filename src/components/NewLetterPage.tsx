@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Hash, Calendar, Edit3, Tag, Flame, Users2, Copy, EyeOff,
   Bold, Italic, Underline as UIcon, Strikethrough, AlignRight, AlignCenter, AlignLeft, AlignJustify,
