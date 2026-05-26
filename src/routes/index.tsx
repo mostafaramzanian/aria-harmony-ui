@@ -7,6 +7,7 @@ import {
   ArrowUpDown, Sparkles, TrendingUp, Clock3, Inbox as InboxIcon,
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
+import { HomeDashboard } from "@/components/HomeDashboard";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({ component: AriaApp });
@@ -43,7 +44,7 @@ const seed: Row[] = [
 
 function AriaApp() {
   const [collapsed, setCollapsed] = useState(false);
-  const [active, setActive] = useState("inbox");
+  const [active, setActive] = useState("home");
   const [dark, setDark] = useState(true);
   const [q, setQ] = useState("");
   const [deptFilter, setDeptFilter] = useState<"all" | Dept>("all");
@@ -119,7 +120,11 @@ function AriaApp() {
         </header>
 
         {/* Body */}
+        {active === "home" ? (
+          <HomeDashboard onOpenInbox={() => setActive("inbox")} />
+        ) : (
         <div className="p-6 lg:p-8 space-y-6 max-w-[1600px] w-full mx-auto">
+
           {/* Hero header */}
           <div className="relative overflow-hidden rounded-2xl border border-border shadow-card">
             <div className="absolute inset-0 hero-glow" />
@@ -290,6 +295,8 @@ function AriaApp() {
             </div>
           </div>
         </div>
+        )}
+
       </main>
     </div>
   );
