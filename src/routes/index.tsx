@@ -82,7 +82,7 @@ function AriaApp() {
       <main className="flex-1 min-w-0 flex flex-col">
         {/* Top bar */}
         <header className="sticky top-0 z-20 glass border-b border-border">
-          <div className="flex items-center gap-3 px-6 h-[72px]">
+          <div className="flex items-center justify-between gap-3 px-6 h-[72px]">
             <div className="flex-1 max-w-2xl">
               <div className="relative">
                 <label htmlFor="aria-global-search" className="sr-only">جستجو در همه ماژول‌ها</label>
