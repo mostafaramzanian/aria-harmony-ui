@@ -685,3 +685,130 @@ function ColorPicker({ icon, title, onPick }: { icon: React.ReactNode; title: st
     </>
   );
 }
+
+function SignaturePad({
+  initial, onClose, onSave,
+}: { initial: string | null; onClose: () => void; onSave: (url: string) => void }) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const drawingRef = useRef(false);
+  const lastRef = useRef<{ x: number; y: number } | null>(null);
+  const [color, setColor] = useState("#0f172a");
+  const [size, setSize] = useState(2.5);
+  const [hasInk, setHasInk] = useState(false);
+
+  useEffect(() => {
+    const c = canvasRef.current; if (!c) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = c.getBoundingClientRect();
+    c.width = rect.width * dpr;
+    c.height = rect.height * dpr;
+    const ctx = c.getContext("2d")!;
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+  }, []);
+
+  const pos = (e: React.PointerEvent) => {
+    const c = canvasRef.current!;
+    const rect = c.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+  const start = (e: React.PointerEvent) => {
+    (e.target as Element).setPointerCapture(e.pointerId);
+    drawingRef.current = true;
+    lastRef.current = pos(e);
+  };
+  const move = (e: React.PointerEvent) => {
+    if (!drawingRef.current) return;
+    const ctx = canvasRef.current!.getContext("2d")!;
+    const p = pos(e);
+    const l = lastRef.current!;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = size;
+    ctx.beginPath();
+    ctx.moveTo(l.x, l.y);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    lastRef.current = p;
+    if (!hasInk) setHasInk(true);
+  };
+  const end = () => { drawingRef.current = false; lastRef.current = null; };
+
+  const clear = () => {
+    const c = canvasRef.current!;
+    const ctx = c.getContext("2d")!;
+    const rect = c.getBoundingClientRect();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    setHasInk(false);
+  };
+
+  const save = () => {
+    const url = canvasRef.current!.toDataURL("image/png");
+    onSave(url);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-background/70 backdrop-blur-sm p-4" dir="rtl">
+      <div className="w-full max-w-[640px] rounded-2xl border border-border bg-card shadow-2xl overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-gradient-to-l from-primary/10 to-transparent">
+          <div className="text-sm font-semibold flex items-center gap-2">
+            <PenLine className="size-4 text-primary" /> ترسیم امضای دیجیتال
+          </div>
+          <button onClick={onClose} className="size-8 grid place-items-center rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition" aria-label="بستن">
+            <X className="size-4" />
+          </button>
+        </div>
+
+        <div className="p-5 space-y-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-3">
+              <label className="text-[11px] text-muted-foreground flex items-center gap-2">
+                رنگ
+                <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="size-7 rounded-md border border-border bg-transparent cursor-pointer" />
+              </label>
+              <label className="text-[11px] text-muted-foreground flex items-center gap-2">
+                ضخامت
+                <input type="range" min={1} max={8} step={0.5} value={size} onChange={(e) => setSize(parseFloat(e.target.value))} className="accent-[var(--color-primary)]" />
+                <span className="tabular-nums w-6 text-center">{size}</span>
+              </label>
+            </div>
+            <button onClick={clear} className="h-8 px-3 rounded-lg border border-border bg-secondary/60 text-xs inline-flex items-center gap-1.5 hover:bg-secondary transition">
+              <Trash2 className="size-3.5" /> پاک کردن
+            </button>
+          </div>
+
+          <div className="rounded-xl border-2 border-dashed border-border bg-white overflow-hidden" style={{ touchAction: "none" }}>
+            <canvas
+              ref={canvasRef}
+              onPointerDown={start}
+              onPointerMove={move}
+              onPointerUp={end}
+              onPointerLeave={end}
+              className="block w-full h-[260px] cursor-crosshair"
+            />
+          </div>
+          <div className="text-[11px] text-muted-foreground text-center">
+            با ماوس یا قلم، امضای خود را در کادر بالا ترسیم کنید
+          </div>
+        </div>
+
+        <div className="px-5 py-3 border-t border-border flex items-center justify-end gap-2">
+          <button onClick={onClose} className="h-10 px-4 rounded-xl border border-border bg-secondary/60 text-sm hover:bg-secondary transition">
+            انصراف
+          </button>
+          <button
+            onClick={save}
+            disabled={!hasInk}
+            className="h-10 px-5 rounded-xl gradient-primary text-primary-foreground text-sm font-semibold inline-flex items-center gap-2 shadow-glow disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            <CheckCircle2 className="size-4" /> ذخیره امضا
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
