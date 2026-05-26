@@ -284,12 +284,20 @@ export function NewLetterPage() {
                   {signatureUrl ? (
                     <div className="flex flex-col items-center gap-2 py-3">
                       <img src={signatureUrl} alt="امضا" className="max-h-[110px] object-contain" />
-                      <button
-                        onClick={() => setSignatureUrl(null)}
-                        className="text-[11px] text-rose-300 hover:text-rose-200 inline-flex items-center gap-1"
-                      >
-                        <Trash2 className="size-3" /> حذف امضا
-                      </button>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => setDrawOpen(true)}
+                          className="text-[11px] text-primary hover:opacity-80 inline-flex items-center gap-1"
+                        >
+                          <PenLine className="size-3" /> ترسیم مجدد
+                        </button>
+                        <button
+                          onClick={() => setSignatureUrl(null)}
+                          className="text-[11px] text-rose-300 hover:text-rose-200 inline-flex items-center gap-1"
+                        >
+                          <Trash2 className="size-3" /> حذف امضا
+                        </button>
+                      </div>
                     </div>
                   ) : (
                     <div className="py-5">
