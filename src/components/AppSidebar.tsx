@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Inbox, Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
   ChevronDown, FilePlus, FileEdit, Send, Search, Archive, Trash2,
@@ -11,6 +11,33 @@ import { cn } from "@/lib/utils";
 
 type Item = { label: string; icon: any; key: string };
 type Group = { label: string; icon: any; key: string; items?: Item[] };
+
+function usePersianDate() {
+  return useMemo(() => {
+    const now = new Date();
+    const d = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+      weekday: "long", year: "numeric", month: "long", day: "numeric",
+    }).formatToParts(now);
+    const day = d.find((p) => p.type === "day")?.value ?? "";
+    const month = d.find((p) => p.type === "month")?.value ?? "";
+    const year = d.find((p) => p.type === "year")?.value ?? "";
+    const weekday = d.find((p) => p.type === "weekday")?.value ?? "";
+    return { day, month, year, weekday, full: `${day} ${month} ${year}` };
+  }, []);
+}
+
+function PersianDateDay() {
+  const { day } = usePersianDate();
+  return <span>{day}</span>;
+}
+function PersianDateFull() {
+  const { full } = usePersianDate();
+  return <span>{full}</span>;
+}
+function PersianDateWeekday() {
+  const { weekday } = usePersianDate();
+  return <span>{weekday}</span>;
+}
 
 const groups: Group[] = [
   { label: "صندوق دریافت", icon: Inbox, key: "inbox" },
