@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import {
-  Inbox, Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
+  Home, Inbox, Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
   ChevronDown, FilePlus, FileEdit, Send, Search, Archive, Trash2,
   CalendarClock, UserCheck, Plane, Clock, MessageSquare,
   FileBarChart, TrendingUp, FolderKanban, ListTodo,
@@ -40,6 +40,7 @@ function PersianDateWeekday() {
 }
 
 const groups: Group[] = [
+  { label: "خانه", icon: Home, key: "home" },
   { label: "صندوق دریافت", icon: Inbox, key: "inbox" },
   {
     label: "مکاتبات", icon: Mail, key: "mail",
