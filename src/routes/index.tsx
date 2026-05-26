@@ -4,11 +4,12 @@ import {
   Search, Bell, Sun, Moon, Filter, Calendar, ChevronDown,
   MoreHorizontal, Eye, CheckCircle2, AlertCircle, Circle,
   Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
-  ArrowUpDown, Sparkles, TrendingUp, Clock3, Inbox as InboxIcon,
+  ArrowUpDown,
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { HomeDashboard } from "@/components/HomeDashboard";
 import { cn } from "@/lib/utils";
+
 
 export const Route = createFileRoute("/")({ component: AriaApp });
 
