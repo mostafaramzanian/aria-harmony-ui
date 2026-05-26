@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { HomeDashboard } from "@/components/HomeDashboard";
+import { NewLetterPage } from "@/components/NewLetterPage";
 import { cn } from "@/lib/utils";
 
 
@@ -117,6 +118,8 @@ function AriaApp() {
         {/* Body */}
         {active === "home" ? (
           <HomeDashboard onOpenInbox={() => setActive("inbox")} />
+        ) : active === "mail-new" ? (
+          <NewLetterPage />
         ) : (
         <div className="p-6 lg:p-8 space-y-6 max-w-[1600px] w-full mx-auto">
 
