@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import {
-  Inbox, Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
+  Home, Inbox, Mail, Users, ClipboardList, Wallet, ShoppingBag, ShieldCheck,
   ChevronDown, FilePlus, FileEdit, Send, Search, Archive, Trash2,
   CalendarClock, UserCheck, Plane, Clock, MessageSquare,
   FileBarChart, TrendingUp, FolderKanban, ListTodo,
