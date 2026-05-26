@@ -98,7 +98,7 @@ function AriaApp() {
                 <kbd className="hidden md:block absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground bg-background border border-border rounded px-1.5 py-0.5">⌘K</kbd>
               </div>
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="items-center gap-1.5 flex flex-row text-left">
               <button onClick={toggleTheme} className="size-10 grid place-items-center rounded-xl hover:bg-secondary transition" aria-label={dark ? "روشن کردن حالت روز" : "فعال کردن حالت شب"}>
                 {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </button>
