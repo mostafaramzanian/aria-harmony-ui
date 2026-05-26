@@ -120,7 +120,11 @@ function AriaApp() {
         </header>
 
         {/* Body */}
+        {active === "home" ? (
+          <HomeDashboard onOpenInbox={() => setActive("inbox")} />
+        ) : (
         <div className="p-6 lg:p-8 space-y-6 max-w-[1600px] w-full mx-auto">
+
           {/* Hero header */}
           <div className="relative overflow-hidden rounded-2xl border border-border shadow-card">
             <div className="absolute inset-0 hero-glow" />
