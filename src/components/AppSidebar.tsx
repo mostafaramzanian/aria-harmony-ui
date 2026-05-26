@@ -170,19 +170,19 @@ export function AppSidebar({
           })}
         </nav>
 
-        {/* User */}
+        {/* Date */}
         <div className="px-3 pb-4">
           <div className={cn(
             "rounded-xl p-3 bg-white/5 border border-white/10 flex items-center gap-3",
             collapsed && "justify-center p-2"
           )}>
-            <div className="size-9 rounded-lg gradient-primary grid place-items-center text-sm font-bold text-primary-foreground shrink-0">
-              م.ر
+            <div className="size-9 rounded-lg gradient-primary grid place-items-center text-sm font-bold text-primary-foreground shrink-0 leading-none">
+              <PersianDateDay />
             </div>
             {!collapsed && (
               <div className="min-w-0">
-                <div className="text-sm font-medium text-white truncate">محمد رضایی</div>
-                <div className="text-[11px] text-white/50 truncate">مدیر سامانه</div>
+                <div className="text-sm font-medium text-white truncate"><PersianDateFull /></div>
+                <div className="text-[11px] text-white/50 truncate"><PersianDateWeekday /></div>
               </div>
             )}
           </div>
