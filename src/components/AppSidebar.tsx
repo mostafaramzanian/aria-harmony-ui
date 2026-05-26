@@ -40,6 +40,7 @@ function PersianDateWeekday() {
 }
 
 const groups: Group[] = [
+  { label: "خانه", icon: Home, key: "home" },
   { label: "صندوق دریافت", icon: Inbox, key: "inbox" },
   {
     label: "مکاتبات", icon: Mail, key: "mail",
