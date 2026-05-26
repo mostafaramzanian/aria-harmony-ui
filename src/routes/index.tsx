@@ -295,6 +295,8 @@ function AriaApp() {
             </div>
           </div>
         </div>
+        )}
+
       </main>
     </div>
   );
