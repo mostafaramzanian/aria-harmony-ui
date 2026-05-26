@@ -44,7 +44,7 @@ const seed: Row[] = [
 
 function AriaApp() {
   const [collapsed, setCollapsed] = useState(false);
-  const [active, setActive] = useState("inbox");
+  const [active, setActive] = useState("home");
   const [dark, setDark] = useState(true);
   const [q, setQ] = useState("");
   const [deptFilter, setDeptFilter] = useState<"all" | Dept>("all");
