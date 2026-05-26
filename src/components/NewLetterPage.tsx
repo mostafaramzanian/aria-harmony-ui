@@ -305,7 +305,10 @@ export function NewLetterPage() {
                         >
                           <Upload className="size-3.5" /> بارگذاری
                         </button>
-                        <button className="h-9 px-3 rounded-lg border border-border bg-secondary/60 text-xs font-medium inline-flex items-center gap-1.5 hover:bg-secondary transition">
+                        <button
+                          onClick={() => setDrawOpen(true)}
+                          className="h-9 px-3 rounded-lg border border-border bg-secondary/60 text-xs font-medium inline-flex items-center gap-1.5 hover:bg-secondary transition"
+                        >
                           <PenLine className="size-3.5" /> ترسیم
                         </button>
                       </div>
