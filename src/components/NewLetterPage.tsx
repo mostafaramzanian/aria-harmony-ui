@@ -54,6 +54,7 @@ export function NewLetterPage() {
   );
   const [signatureUrl, setSignatureUrl] = useState<string | null>(null);
   const [saveSignature, setSaveSignature] = useState(true);
+  const [drawOpen, setDrawOpen] = useState(false);
   const [files, setFiles] = useState<{ name: string; size: number }[]>([]);
   const editorRef = useRef<HTMLDivElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
