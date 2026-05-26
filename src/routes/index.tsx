@@ -65,12 +65,6 @@ function AriaApp() {
     });
   }, [q, deptFilter, statusFilter]);
 
-  const stats = [
-    { label: "پیام‌های خوانده نشده", value: "۲۴", change: "+۸٪", icon: InboxIcon, tone: "text-[var(--color-primary-glow)]" },
-    { label: "نیازمند اقدام", value: "۰۹", change: "اولویت بالا", icon: AlertCircle, tone: "text-amber-400" },
-    { label: "ورودی امروز", value: "۱۲", change: "+۳ نسبت به دیروز", icon: TrendingUp, tone: "text-emerald-400" },
-    { label: "میانگین پاسخ", value: "۱.۸س", change: "بهینه", icon: Clock3, tone: "text-cyan-400" },
-  ];
 
   return (
     <div className="flex min-h-screen bg-background text-foreground" dir="rtl">
